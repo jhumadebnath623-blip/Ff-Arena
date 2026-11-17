@@ -1,0 +1,6 @@
+{
+  "name": "FF Arena",
+  "description": "Esports tournament management platform for Solo, Duo, and Squad Battle Royale & Clash Squad competitions with real-time brackets, room access, leaderboards, and admin controls.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

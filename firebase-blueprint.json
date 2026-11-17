@@ -1,0 +1,278 @@
+{
+  "entities": {
+    "PublicPlayer": {
+      "title": "PublicPlayer",
+      "description": "Public esports player profile and aggregate stats without PII",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "playerName": { "type": "string" },
+        "ign": { "type": "string" },
+        "freeFireUid": { "type": "string" },
+        "avatarKey": { "type": "string" },
+        "photoUrl": { "type": "string" },
+        "totalWins": { "type": "integer" },
+        "totalKills": { "type": "integer" },
+        "matchesPlayed": { "type": "integer" },
+        "totalPoints": { "type": "integer" },
+        "achievements": { "type": "array" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "userId",
+        "playerName",
+        "ign",
+        "freeFireUid",
+        "avatarKey",
+        "totalWins",
+        "totalKills",
+        "matchesPlayed",
+        "totalPoints",
+        "achievements",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "PrivatePlayer": {
+      "title": "PrivatePlayer",
+      "description": "Owner-and-admin-only player contact PII",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "playerName": { "type": "string" },
+        "ign": { "type": "string" },
+        "freeFireUid": { "type": "string" },
+        "whatsappNumber": { "type": "string" },
+        "email": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "userId",
+        "playerName",
+        "ign",
+        "freeFireUid",
+        "whatsappNumber",
+        "email",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "AdminMember": {
+      "title": "AdminMember",
+      "description": "Authorized admin record",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "grantedBy": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "grantedBy", "createdAt"]
+    },
+    "Tournament": {
+      "title": "Tournament",
+      "description": "Public Free Fire esports tournament listing",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "mode": { "type": "string", "enum": ["SOLO", "DUO", "SQUAD"] },
+        "category": { "type": "string", "enum": ["BATTLE_ROYALE", "CLASH_SQUAD"] },
+        "status": { "type": "string", "enum": ["UPCOMING", "LIVE", "COMPLETED"] },
+        "bannerKey": { "type": "string", "enum": ["battle_royale", "clash_squad", "championship"] },
+        "mapName": { "type": "string" },
+        "matchTimeMillis": { "type": "integer" },
+        "roomOpenTimeMillis": { "type": "integer" },
+        "maxSlots": { "type": "integer" },
+        "registeredSlots": { "type": "integer" },
+        "entryType": { "type": "string", "enum": ["FREE"] },
+        "prizeDetails": { "type": "string" },
+        "rulesText": { "type": "string" },
+        "featured": { "type": "boolean" },
+        "winnerName": { "type": "string" },
+        "runnerUpName": { "type": "string" },
+        "thirdPlaceName": { "type": "string" },
+        "mvpName": { "type": "string" },
+        "createdBy": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "title",
+        "mode",
+        "category",
+        "status",
+        "bannerKey",
+        "mapName",
+        "matchTimeMillis",
+        "roomOpenTimeMillis",
+        "maxSlots",
+        "registeredSlots",
+        "entryType",
+        "prizeDetails",
+        "rulesText",
+        "featured",
+        "createdBy",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "RoomAccess": {
+      "title": "RoomAccess",
+      "description": "Protected custom room ID and password accessible only to approved participants and admins",
+      "type": "object",
+      "properties": {
+        "tournamentId": { "type": "string" },
+        "roomId": { "type": "string" },
+        "roomPassword": { "type": "string" },
+        "notes": { "type": "string" },
+        "updatedBy": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["tournamentId", "roomId", "roomPassword", "notes", "updatedBy", "createdAt", "updatedAt"]
+    },
+    "Registration": {
+      "title": "Registration",
+      "description": "Player or team registration for a tournament",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "tournamentId": { "type": "string" },
+        "tournamentTitle": { "type": "string" },
+        "mode": { "type": "string", "enum": ["SOLO", "DUO", "SQUAD"] },
+        "playerName": { "type": "string" },
+        "ign": { "type": "string" },
+        "freeFireUid": { "type": "string" },
+        "whatsappNumber": { "type": "string" },
+        "teamName": { "type": "string" },
+        "teammateIgns": { "type": "array" },
+        "teammateUids": { "type": "array" },
+        "status": { "type": "string", "enum": ["PENDING", "APPROVED", "REJECTED"] },
+        "adminNote": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "userId",
+        "tournamentId",
+        "tournamentTitle",
+        "mode",
+        "playerName",
+        "ign",
+        "freeFireUid",
+        "whatsappNumber",
+        "teamName",
+        "teammateIgns",
+        "teammateUids",
+        "status",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "LeaderboardEntry": {
+      "title": "LeaderboardEntry",
+      "description": "Tournament match score and placement entry",
+      "type": "object",
+      "properties": {
+        "tournamentId": { "type": "string" },
+        "tournamentTitle": { "type": "string" },
+        "userId": { "type": "string" },
+        "playerName": { "type": "string" },
+        "ign": { "type": "string" },
+        "teamName": { "type": "string" },
+        "freeFireUid": { "type": "string" },
+        "kills": { "type": "integer" },
+        "placementRank": { "type": "integer" },
+        "positionPoints": { "type": "integer" },
+        "totalPoints": { "type": "integer" },
+        "winnerBadge": { "type": "string", "enum": ["CHAMPION", "RUNNER_UP", "THIRD", "NONE"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "tournamentId",
+        "tournamentTitle",
+        "userId",
+        "playerName",
+        "ign",
+        "teamName",
+        "freeFireUid",
+        "kills",
+        "placementRank",
+        "positionPoints",
+        "totalPoints",
+        "winnerBadge",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Announcement": {
+      "title": "Announcement",
+      "description": "Global tournament announcement and alert",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "message": { "type": "string" },
+        "type": { "type": "string", "enum": ["NEW_TOURNAMENT", "ROOM_READY", "MATCH_REMINDER", "MATCH_RESULT", "WINNER", "GENERAL"] },
+        "tournamentId": { "type": "string" },
+        "createdBy": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "message", "type", "createdBy", "createdAt"]
+    },
+    "UserNotification": {
+      "title": "UserNotification",
+      "description": "Per-user tournament notification",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "message": { "type": "string" },
+        "type": { "type": "string", "enum": ["REGISTRATION", "APPROVAL", "ROOM_READY", "REMINDER", "RESULT", "WINNER"] },
+        "tournamentId": { "type": "string" },
+        "readFlag": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "message", "type", "readFlag", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/public_players/{userId}": {
+      "schema": { "$ref": "#/entities/PublicPlayer" },
+      "description": "Public player standings and stats"
+    },
+    "/players/{userId}": {
+      "schema": { "$ref": "#/entities/PrivatePlayer" },
+      "description": "Owner and admin-only private player contact info"
+    },
+    "/admins/{adminUid}": {
+      "schema": { "$ref": "#/entities/AdminMember" },
+      "description": "Authorized admin accounts"
+    },
+    "/tournaments/{tournamentId}": {
+      "schema": { "$ref": "#/entities/Tournament" },
+      "description": "Tournaments catalog"
+    },
+    "/tournaments/{tournamentId}/room_access/{docId}": {
+      "schema": { "$ref": "#/entities/RoomAccess" },
+      "description": "Protected room ID and password"
+    },
+    "/registrations/{registrationId}": {
+      "schema": { "$ref": "#/entities/Registration" },
+      "description": "Tournament registrations"
+    },
+    "/leaderboard/{entryId}": {
+      "schema": { "$ref": "#/entities/LeaderboardEntry" },
+      "description": "Tournament and player leaderboard standings"
+    },
+    "/announcements/{announcementId}": {
+      "schema": { "$ref": "#/entities/Announcement" },
+      "description": "Global tournament announcements"
+    },
+    "/users/{userId}/notifications/{notificationId}": {
+      "schema": { "$ref": "#/entities/UserNotification" },
+      "description": "Personal player notifications"
+    }
+  }
+}
